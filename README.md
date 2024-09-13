@@ -1,8 +1,5 @@
-# React + Vite
+# SleeperWeb
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Et personligt projekt der skal give et bedre overblik og hold, samt tilhørende spillere på vores NFL Dynasty liga på Sleeper.com  
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Planen er at der skal hentes fantasy scoring data ind og der så skal køres en sideløbende Best Ball liga herinde
