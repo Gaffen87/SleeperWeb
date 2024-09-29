@@ -1,6 +1,13 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
+import {
+  getFirestore,
+  collection,
+  getDocs,
+  query,
+  where,
+  getDoc,
+} from "firebase/firestore";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -18,4 +25,21 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
+export const db = getFirestore(app);
+// const analytics = getAnalytics(app);
+
+export const getPlayersFromDb = async () => {
+  const players = [];
+  const querySnapshot = await getDocs(collection(db, "players"));
+  querySnapshot.forEach((doc) => {
+    players.push(doc.data());
+  });
+  return players;
+};
+
+export const getPlayerById = async (playerId) => {
+  const playersRef = collection(db, "players", );
+  const querySnapshot = query(playersRef, where("playerId", "==", playerId));
+  const player = (await getDocs(querySnapshot)).docs[0].data();
+  return player;
+};
