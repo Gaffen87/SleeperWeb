@@ -1,7 +1,9 @@
 import { db } from "../Services/Firebase";
 import { collection, addDoc } from "firebase/firestore";
 
-export const getRosters = async (leagueId) => {
+const leagueId = import.meta.env.VITE_LEAGUE_ID;
+
+export const getRosters = async () => {
   const rosters = [];
   await fetch(`https://api.sleeper.app/v1/league/${leagueId}/rosters`)
     .then((response) => response.json())
@@ -10,6 +12,11 @@ export const getRosters = async (leagueId) => {
         rosters.push({
           owner_id: roster.owner_id,
           players: roster.players,
+          starters: roster.starters,
+          taxi: roster.taxi,
+          record: roster.metadata.record,
+          streak: roster.metadata.streak,
+          points: roster.settings.fpts,
         });
       });
     })
@@ -19,11 +26,12 @@ export const getRosters = async (leagueId) => {
   return rosters;
 };
 
-export const getUsers = async (leagueId) => {
+export const getUsers = async () => {
   const users = [];
   await fetch(`https://api.sleeper.app/v1/league/${leagueId}/users`)
     .then((response) => response.json())
     .then((data) => {
+      console.log(data);
       data.map((user) => {
         users.push({ name: user.display_name, id: user.user_id });
       });

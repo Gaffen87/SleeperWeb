@@ -9,8 +9,35 @@ const Player = ({ playerid }) => {
       const playerData = await getPlayerById(playerid);
       setPlayer(playerData);
     }
-    // getPlayer();
+    getPlayer();
   }, [playerid]);
+
+  if (player) {
+    return (
+      <div className="border-black flex w-full cursor-pointer bg-bluegray_light px-10 py-2">
+        <div className="basis-1/6">
+          <img
+            src="https://static.www.nfl.com/image/upload/t_player_profile_landscape/f_auto/league/izkm5yyxybb5uy5dkcgf"
+            className="w-15 h-10"
+          />
+        </div>
+        <div className="ml-2 basis-1/2 overflow-hidden">
+          <p className="overflow-hidden text-ellipsis text-nowrap font-bold">
+            {player.fullName}
+          </p>
+          <div className="flex space-x-2 text-xs">
+            <p>{player.position}</p>
+            <p>-</p>
+            <p>{player.team}</p>
+          </div>
+        </div>
+        <div className="my-auto ml-auto mr-5 flex font-mono font-bold">
+          <p className="mr-10">22.5</p>
+          <p>88</p>
+        </div>
+      </div>
+    );
+  }
 
   return <DefaultPlayer />;
 };
@@ -21,7 +48,7 @@ function DefaultPlayer() {
   const defaultPlayers = [
     // Quarterbacks (QB)
     {
-      fullName: "John Doe",
+      fullName: "John Doe-Smith-Njigba-Metcalf-Lockett",
       position: "QB",
       team: "Team A",
       number: "12",
@@ -140,15 +167,17 @@ function DefaultPlayer() {
     defaultPlayers[Math.floor(Math.random() * defaultPlayers.length)];
 
   return (
-    <div className="bg-bluegray_light flex w-full cursor-pointer border-black px-10 py-2">
-      <div>
+    <div className="border-black flex w-full cursor-pointer bg-bluegray_light px-10 py-2">
+      <div className="basis-1/6">
         <img
           src="https://static.www.nfl.com/image/upload/t_player_profile_landscape/f_auto/league/izkm5yyxybb5uy5dkcgf"
           className="w-15 h-10"
         />
       </div>
-      <div className="ml-2">
-        <p className="font-bold">{randomPlayer.fullName}</p>
+      <div className="ml-2 basis-1/2 overflow-hidden">
+        <p className="overflow-hidden text-ellipsis text-nowrap font-bold">
+          {randomPlayer.fullName}
+        </p>
         <div className="flex space-x-2 text-xs">
           <p>{randomPlayer.position}</p>
           <p>-</p>
